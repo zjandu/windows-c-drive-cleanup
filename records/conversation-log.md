@@ -16,3 +16,7 @@
 ### Validation Update
 - The repository now includes a second pass where helper scripts were actually executed.
 - Public hosting is still not configured because there is no GitHub CLI on this machine and no remote has been set yet.
+
+### Publication Update
+- Published successfully to `https://github.com/zjandu/windows-c-drive-cleanup`.
+- The repository is separate from `PawGuard`.

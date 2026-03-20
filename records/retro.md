@@ -19,3 +19,7 @@
 ### Validation Lessons
 - A skill is not done when docs exist; bundled scripts must be executed at least once.
 - For Windows reuse, avoid non-ASCII hard-coded script paths where possible.
+
+### Publication Lessons
+- Always verify remote emptiness before publishing when the user already has other repositories.
+- Make the target repository name explicit in the approval step.

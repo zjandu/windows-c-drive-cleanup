@@ -1,0 +1,6 @@
+interface:
+  display_name: "Windows C Drive Cleanup"
+  short_description: "Safely audit and free Windows C drive space"
+  default_prompt: "Use $windows-c-drive-cleanup to audit a Windows C drive, estimate reclaimable space in tiers, and clean only the approved items."
+policy:
+  allow_implicit_invocation: true

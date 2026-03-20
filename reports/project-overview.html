@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>C盘清理 Skill 项目总览</title>
+  <style>
+    :root {
+      --bg: #f6f1e8;
+      --panel: rgba(255,255,255,0.84);
+      --text: #171411;
+      --muted: #665d54;
+      --line: rgba(23,20,17,0.12);
+      --ok: #215f4e;
+      --accent: #9b5a1a;
+      --shadow: 0 24px 56px rgba(48, 36, 24, 0.10);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(33,95,78,0.14), transparent 28%),
+        radial-gradient(circle at top right, rgba(155,90,26,0.10), transparent 22%),
+        linear-gradient(180deg, #fbf8f2, #efe6d9 60%, #eadfcc);
+    }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 36px 20px 68px; }
+    .hero, .card { background: var(--panel); border: 1px solid var(--line); border-radius: 24px; box-shadow: var(--shadow); }
+    .hero { padding: 30px; }
+    .cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 18px; }
+    .card { padding: 22px; }
+    .pill { display: inline-block; padding: 6px 10px; border-radius: 999px; background: rgba(33,95,78,0.12); color: var(--ok); font-weight: 700; font-size: 12px; margin-bottom: 10px; }
+    h1, h2 { margin: 0 0 12px; line-height: 1.2; }
+    h1 { font-size: 36px; letter-spacing: -0.03em; }
+    h2 { font-size: 22px; }
+    p { margin: 0 0 10px; line-height: 1.65; }
+    .muted { color: var(--muted); }
+    .grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-top: 18px; }
+    .stat { padding: 16px; border: 1px solid var(--line); border-radius: 18px; background: rgba(255,255,255,0.78); }
+    .label { font-size: 13px; color: var(--muted); }
+    .value { font-size: 28px; font-weight: 800; margin-top: 4px; }
+    ul { margin: 0; padding-left: 18px; }
+    li { margin-bottom: 8px; line-height: 1.6; }
+    code { background: rgba(23,20,17,0.06); padding: 2px 6px; border-radius: 6px; }
+    @media (max-width: 900px) { .grid, .cards { grid-template-columns: 1fr; } h1 { font-size: 30px; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="pill">项目完成 100%</div>
+      <h1>C盘清理 Skill 项目总览</h1>
+      <p>这是一个从真实 Windows C盘清理实战中提炼出来的开源 skill 项目。目标不是“激进删文件”，而是让任意 AI 以安全、分级、可复盘的方式完成 C盘审计和清理。</p>
+      <p class="muted">项目位置：D:\C盘清理</p>
+      <div class="grid">
+        <div class="stat"><div class="label">Skill 名称</div><div class="value">windows-c-drive-cleanup</div></div>
+        <div class="stat"><div class="label">脚本数量</div><div class="value">2</div></div>
+        <div class="stat"><div class="label">参考文档</div><div class="value">3</div></div>
+        <div class="stat"><div class="label">状态</div><div class="value">git-ready</div></div>
+      </div>
+    </section>
+
+    <div class="cards">
+      <section class="card">
+        <h2>包含内容</h2>
+        <ul>
+          <li><code>SKILL.md</code>：技能核心规则和执行边界</li>
+          <li><code>references/</code>：流程、风险矩阵、命令库</li>
+          <li><code>scripts/</code>：审计与低风险清理脚本</li>
+          <li><code>README.md</code>：面向开源仓库的总说明</li>
+          <li><code>examples/any-ai-prompt.md</code>：可直接扔给 AI 的起始提示词</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>真实案例验证</h2>
+        <ul>
+          <li>来源于一次真实执行，而不是纯理论拼装。</li>
+          <li>验证结果：<code>C:</code> 空闲从 <strong>27.69 GB</strong> 提升到 <strong>33.13 GB</strong>。</li>
+          <li>保留了微信信息，没有碰 <code>pagefile.sys</code>。</li>
+          <li>通过“先审计、再分级、后执行、阶段复核”达成目标。</li>
+        </ul>
+      </section>
+    </div>
+  </div>
+</body>
+</html>

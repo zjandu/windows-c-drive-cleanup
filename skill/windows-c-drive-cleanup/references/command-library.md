@@ -8,20 +8,22 @@ Get-PSDrive -PSProvider FileSystem | Where-Object Name -eq 'C'
 
 ## Root Breakdown
 
+Use the bundled script for a faster fixed-candidate audit:
+
 ```powershell
-Get-ChildItem C:\ -Force
+.\scripts\audit_c_drive.ps1 -Drive C
 ```
 
 ## Common Reclaimable Paths
 
-```powershell
-$paths = @(
-  'C:\Users\<user>\AppData\Local\Temp',
-  'C:\Windows\Temp',
-  'C:\Windows\SoftwareDistribution\Download',
-  'C:\Windows\MEMORY.DMP'
-)
-```
+Typical examples:
+
+- `%LOCALAPPDATA%\Temp`
+- `C:\Windows\Temp`
+- `C:\Windows\SoftwareDistribution\Download`
+- `C:\Windows\MEMORY.DMP`
+- browser caches
+- updater installer caches
 
 ## Hibernation
 
@@ -52,16 +54,22 @@ Audit:
 .\scripts\audit_c_drive.ps1 -Drive C -IncludeAppDataBreakdown
 ```
 
-Cleanup batch:
+Safe cleanup batch:
 
 ```powershell
 .\scripts\cleanup_targets.ps1 -ClearUserTemp -ClearChromeCache -ClearUpdaterCaches
 ```
 
+Approved app-local data removal:
+
+```powershell
+.\scripts\cleanup_targets.ps1 -RemoveApprovedDirs @('C:\Path\ApprovedAppLocalData')
+```
+
 Conditional cleanup:
 
 ```powershell
-.\scripts\cleanup_targets.ps1 -RemoveWeChatDevtoolsLocalData -DeleteMemoryDump -DeleteDriverLogs
+.\scripts\cleanup_targets.ps1 -DeleteMemoryDump -DeleteDriverLogs
 ```
 
 ## Verification

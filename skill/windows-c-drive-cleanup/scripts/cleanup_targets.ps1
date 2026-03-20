@@ -1,10 +1,10 @@
-[CmdletBinding(SupportsShouldProcess = $true)]
+﻿[CmdletBinding(SupportsShouldProcess = $true)]
 param(
     [string]$UserProfile = $env:USERPROFILE,
     [switch]$ClearUserTemp,
     [switch]$ClearChromeCache,
     [switch]$ClearUpdaterCaches,
-    [switch]$RemoveWeChatDevtoolsLocalData,
+    [string[]]$RemoveApprovedDirs = @(),
     [switch]$DeleteMemoryDump,
     [switch]$DeleteDriverLogs
 )
@@ -23,7 +23,7 @@ function Get-Bytes([string]$Path) {
 function Remove-Target([string]$Path, [string]$Mode) {
     $before = Get-Bytes $Path
     if (-not (Test-Path -LiteralPath $Path)) {
-        return [pscustomobject]@{ Path = $Path; Action = $Mode; BeforeGB = 0; Success = $true; Note = 'missing' }
+        return [pscustomobject]@{ Path = $Path; Action = $Mode; BeforeGB = 0; AfterGB = 0; Success = $true; Note = 'missing' }
     }
 
     if ($PSCmdlet.ShouldProcess($Path, $Mode)) {
@@ -31,7 +31,9 @@ function Remove-Target([string]$Path, [string]$Mode) {
             switch ($Mode) {
                 'remove-file' { Remove-Item -LiteralPath $Path -Force -ErrorAction Stop }
                 'remove-dir' { Remove-Item -LiteralPath $Path -Recurse -Force -ErrorAction Stop }
-                'clear-dir-contents' { Get-ChildItem -LiteralPath $Path -Force -ErrorAction SilentlyContinue | Remove-Item -Recurse -Force -ErrorAction SilentlyContinue }
+                'clear-dir-contents' {
+                    Get-ChildItem -LiteralPath $Path -Force -ErrorAction SilentlyContinue | Remove-Item -Recurse -Force -ErrorAction SilentlyContinue
+                }
             }
         }
         catch {
@@ -76,8 +78,10 @@ if ($ClearUpdaterCaches) {
     )
 }
 
-if ($RemoveWeChatDevtoolsLocalData) {
-    $targets += [pscustomobject]@{ Path = (Join-Path $UserProfile 'AppData\Local\微信开发者工具'); Mode = 'remove-dir' }
+foreach ($dir in $RemoveApprovedDirs) {
+    if ($dir) {
+        $targets += [pscustomobject]@{ Path = $dir; Mode = 'remove-dir' }
+    }
 }
 
 if ($DeleteMemoryDump) {

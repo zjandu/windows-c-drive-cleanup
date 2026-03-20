@@ -12,3 +12,7 @@
 - Chosen repo root: `D:\C盘清理`
 - Local open-source preparation was completed with license, git-ready structure, reusable docs, and scripts.
 - Public GitHub publishing still depends on GitHub auth and network access on this machine.
+
+### Validation Update
+- The repository now includes a second pass where helper scripts were actually executed.
+- Public hosting is still not configured because there is no GitHub CLI on this machine and no remote has been set yet.

@@ -18,3 +18,10 @@
 
 ### Progress
 - 100%
+
+## 2026-03-20 Validation Pass
+
+### Script Validation
+- `audit_c_drive.ps1` was executed successfully on the current machine and returned real `C:` drive totals plus candidate cleanup paths.
+- `cleanup_targets.ps1` was validated with `-WhatIf` and correctly enumerated temp and Chrome cache actions.
+- The first draft had a parser issue and a heavier default audit path; both were fixed and committed.

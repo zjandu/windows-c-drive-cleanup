@@ -15,3 +15,7 @@
 - Add a report-generation script.
 - Add more app-specific cleanup profiles.
 - Add automated tests for helper scripts.
+
+### Validation Lessons
+- A skill is not done when docs exist; bundled scripts must be executed at least once.
+- For Windows reuse, avoid non-ASCII hard-coded script paths where possible.
